@@ -1,0 +1,58 @@
+$initial-gradient: linear-gradient(90deg, rgba(46, 0, 177, 1), rgba(129, 0, 189, 1), rgba(164, 0, 190, 1));
+$hover-gradient: linear-gradient(90deg, rgba(164, 0, 190, 1), rgba(129, 0, 189, 1), rgba(46, 0, 177, 1));
+$active-gradient: linear-gradient(90deg, rgba(46, 0, 177, 1), rgba(164, 0, 190, 1), rgba(46, 0, 177, 1));
+
+
+.btn {
+  position: relative;
+  padding: 14px 140px;
+  border-radius: 10px;
+  color: white;
+  background: $initial-gradient;
+  border: none;
+  transition: 0.3s all;
+  cursor: pointer;
+  font-weight: 400;
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    height: 100%;
+    opacity: 0;
+    background: $hover-gradient;
+    transition: 0.3s all;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    height: 100%;
+    opacity: 0;
+    background: $active-gradient;
+    transition: 0.3s all;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &:active:after {
+    opacity: 1;
+  }
+}
+
