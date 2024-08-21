@@ -1,0 +1,9 @@
+@import './../../globalVars.module';
+
+.loginPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $main-background-color;
+  height: calc(100vh - 80px - 70px);
+}

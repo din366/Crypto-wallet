@@ -1,17 +1,19 @@
-import Button from "./components/Button/Button.jsx";
 import Header from "./components/Header/Header.jsx";
+import {Outlet} from "react-router-dom";
+import Footer from "./components/Footer/Footer.jsx";
 
 function App() {
   return (
     <>
-      <div>
-
-      <Header></Header>
-      <Button func={() => {alert('Click!')}} text={'sdfsdf'} />
-      </div>
-
+      <Header />
+      <MainWrapper/>
+      <Footer />
     </>
   )
 }
 
-export default App
+const MainWrapper = () => {
+  return <Outlet />
+};
+
+export default App;

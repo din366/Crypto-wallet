@@ -1,9 +1,9 @@
 
 import styles from './Button.module.scss';
 
-const Button = ({text, func}) => {
-  return <button className={styles.btn} onClick={() => {func()}}>
-    <span>{text}</span>
+const Button = ({text, func, fontSize = '', ...args}) => {
+  return <button style={args} className={styles.btn} onClick={() => {func()}}>
+    <span style={{fontSize}}>{text}</span>
   </button>;
 };
 

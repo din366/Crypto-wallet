@@ -1,0 +1,16 @@
+@import "./../../globalVars.module.scss";
+
+.footerWrapper {
+  background-color: $main-background-color;
+}
+
+.footerBlock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.companyName{
+  color: white;
+}

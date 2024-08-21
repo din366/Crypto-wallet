@@ -1,0 +1,58 @@
+@import './../../globalVars.module';
+
+.mainPage{
+  display: block;
+  background-color: $main-background-color;
+  min-height: calc(100vh - 80px - 70px);
+  padding-top: 70px;
+  color: $main-font-color;
+}
+
+.headTitle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 70px;
+
+  h2 {
+    font-size: 30px;
+    margin: 0;
+  }
+
+}
+
+.billsHeaderWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.billsTitle{
+  font-size: 25px;
+}
+
+.billsSortWrapper{
+  .billsSortTitle {
+    font-size: 15px;
+    color: $main-color-darker;
+    margin-right: 10px;
+  }
+
+  select {
+    background-color: transparent;
+    color: $main-font-color;
+    font-weight: 400;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  option {
+    color: $main-font-color;
+    background-color: $main-background-color;
+  }
+}
+
+.billsWrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}

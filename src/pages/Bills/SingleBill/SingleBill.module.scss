@@ -1,0 +1,47 @@
+@import './../../../globalVars.module';
+
+.billBlock{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 16px 20px;
+  background-color: $main-blocks-color;
+  color: white;
+  border-radius: 10px;
+}
+
+.billAccount{
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  color: $main-color-darker;
+  margin-bottom: 15px;
+}
+
+.billBalance{
+  display: block;
+  width: 100%;
+  color: $main-font-color;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.billLastTransactionWrapper{
+  color: $main-color-darker;
+  justify-content: end;
+  font-size: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.billLastTransactionTitle{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.billLastTransactionDate{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}

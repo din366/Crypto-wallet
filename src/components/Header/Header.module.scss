@@ -1,6 +1,8 @@
+@import './../../globalVars.module';
+
 .headerWrapper {
   width: 100%;
-  background-color: rgba(57, 35, 80, 1);
+  background-color: $header-color;
   color: white;
 }
 
@@ -10,26 +12,4 @@
   box-sizing: border-box;
   align-items: center;
   padding: 20px 0;
-}
-
-.logoWrapper{
-  display: flex;
-  align-items: center;
-}
-
-.logo{
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  display: block;
-}
-
-.logoText{
-  color: white;
-  display: block;
-}
-
-.navigateWrapper{
-  display: flex;
-  align-items: center;
 }

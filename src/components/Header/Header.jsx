@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
-import logo from './../../assets/main-logo.png'
-import NavigateButton from "../NavigateButton/NavigateButton.jsx";
+import AppLogo from "../AppLogo/AppLogo.jsx";
+import Navigation from "./Navigation/Navigation.jsx";
 
 
 const Header = () => {
@@ -8,17 +8,8 @@ const Header = () => {
     <div className={styles.headerWrapper}>
       <div className='container'>
         <div className={styles.header}>
-          <div className={styles.logoWrapper}>
-            <img className={styles.logo} src={logo}></img>
-            <span className={styles.logoText}>C-Money</span>
-          </div>
-          <div className={styles.navigateWrapper}>
-            <NavigateButton text={'Log in'}></NavigateButton> {/* ! redux no login var*/}
-
-            <NavigateButton text={'Счета'}></NavigateButton> {/* ! redux login var */}
-            <NavigateButton text={'Обмен'}></NavigateButton>
-            <NavigateButton text={'Выйти'} iconName={'logout'}></NavigateButton>
-          </div>
+          <AppLogo />
+          <Navigation />
         </div>
       </div>
     </div>
