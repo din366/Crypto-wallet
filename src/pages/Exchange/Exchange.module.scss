@@ -1,0 +1,25 @@
+@import './../../globalVars.module.scss';
+
+.exchangePageWrapper {
+  background-color: $main-background-color;
+  color: white;
+  padding-top: 70px;
+  min-height: calc(100vh - 80px - 70px);
+}
+
+.exchangeTitleWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+
+.exchangeTitle {
+  margin: 0;
+}
+
+.exchangeCurrency{
+  max-width: 580px;
+  background-color: $main-blocks-color;
+  padding: 16px;
+  border-radius: 10px;
+}

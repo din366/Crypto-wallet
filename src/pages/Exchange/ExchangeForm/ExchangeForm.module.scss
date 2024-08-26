@@ -1,0 +1,44 @@
+@import './../../../globalVars.module.scss';
+
+.formBlock{
+  form {
+
+  }
+
+  .inputsFlexWrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .inputWrapper{
+      width: 33%;
+    }
+
+    .inputWrapper{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 30%;
+
+      label {
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        color: $main-color-darker;
+      }
+
+      input, select {
+        display: block;
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .buttonWrapper{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+}

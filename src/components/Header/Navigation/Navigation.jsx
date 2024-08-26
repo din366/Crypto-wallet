@@ -1,14 +1,24 @@
 import styles from "./Navigation.module.scss"
 import NavigateButton from "../../NavigateButton/NavigateButton.jsx";
+import {useDispatch} from "react-redux";
+import {logout} from "../../../store/login/loginSlice.js";
 
-const Navigation = () => {
+const Navigation = ({token}) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.navigateWrapper}>
-      <NavigateButton text={'Log in'} link='login'></NavigateButton> {/* ! redux no login var*/}
-
-      <NavigateButton text={'Счета'} link='bills'></NavigateButton> {/* ! redux login var */}
-      <NavigateButton text={'Обмен'} link='exchange'></NavigateButton>
-      <NavigateButton text={'Выйти'} iconName='logout'></NavigateButton>
+      {token ? <>
+        <NavigateButton link='bills'>Счета</NavigateButton>
+        <NavigateButton link='exchange'>Обмен</NavigateButton>
+        <NavigateButton
+          iconName='logout'
+          onClick={
+            () => {dispatch(logout())
+          }
+        }>Выйти</NavigateButton>
+      </> : <NavigateButton link='login'>Log in</NavigateButton>
+      }
     </div>
   );
 };

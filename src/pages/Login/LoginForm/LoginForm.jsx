@@ -1,20 +1,28 @@
 import styles from './LoginForm.module.scss';
 import {useFormik} from "formik";
 import Button from "../../../components/Button/Button.jsx";
-
-const validate = values => {
-  const errors = {};
-}
+import {useDispatch, useSelector} from "react-redux";
+import {getErrorData, getLoading, sendLoginRequest} from "../../../store/login/loginSlice.js";
+import {validate} from "./formikValidate.js";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const loading = useSelector(getLoading);
+  const sendError = useSelector(getErrorData);
+
   const formik = useFormik({
     initialValues: {
       login: '',
       password: '',
     },
-    validate,
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values, { setSubmitting, setErrors }) => {
+      const errors = await validate(values);
+      if (Object.keys(errors).length > 0) {
+        setErrors(errors);
+      } else {
+        dispatch(sendLoginRequest(values));
+      }
+      setSubmitting(false);
     },
   })
 
@@ -41,12 +49,18 @@ const LoginForm = () => {
           value={formik.values.password}
         />
 
+        {formik.errors.login ? <div className={styles.errorBlock}>{formik.errors.login}</div> : null}
+        {formik.errors.password ? <div className={styles.errorBlock}>{formik.errors.password}</div> : null}
+        {sendError ? <div className={styles.errorBlock}>{sendError}</div> : null}
+
         <Button
           text='Вход'
+          type='submit'
           width={100 + '%'}
           padding= '20px 140px'
-          margin-top={10}
+          marginTop={10}
           fontSize={18}
+          disabled={loading}
         ></Button>
       </form>
     </div>

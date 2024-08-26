@@ -1,7 +1,7 @@
 $initial-gradient: linear-gradient(90deg, rgba(46, 0, 177, 1), rgba(129, 0, 189, 1), rgba(164, 0, 190, 1));
 $hover-gradient: linear-gradient(90deg, rgba(164, 0, 190, 1), rgba(129, 0, 189, 1), rgba(46, 0, 177, 1));
 $active-gradient: linear-gradient(90deg, rgba(46, 0, 177, 1), rgba(164, 0, 190, 1), rgba(46, 0, 177, 1));
-
+$loading: #595959;
 
 .btn {
   position: relative;
@@ -59,4 +59,18 @@ $active-gradient: linear-gradient(90deg, rgba(46, 0, 177, 1), rgba(164, 0, 190, 
 .loginButton{
   width: 100%;
 }
+
+.btn:disabled {
+  background: $loading;
+  cursor: progress;
+
+  &::before {
+    background: $loading;
+  }
+
+  &::after {
+    background: $loading;
+  }
+}
+
 

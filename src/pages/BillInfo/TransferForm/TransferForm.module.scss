@@ -1,0 +1,42 @@
+@import './../../../globalVars.module';
+
+.formBlock {
+  box-sizing: border-box;
+
+  .inputWrapper{
+    width: 33%;
+  }
+
+  label {
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    color: $main-color-darker;
+    margin-bottom: 2px;
+    width: 100%;
+  }
+
+  input {
+    font-size: 18px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-family: 'NunitoSans', sans-serif;
+  }
+
+  form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.formTitle {
+  color: $main-font-color;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0 0 40px 0;
+}
