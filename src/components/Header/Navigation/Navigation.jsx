@@ -5,16 +5,17 @@ import {logout} from "../../../store/login/loginSlice.js";
 
 const Navigation = ({token}) => {
   const dispatch = useDispatch();
-
   return (
     <div className={styles.navigateWrapper}>
       {token ? <>
         <NavigateButton link='bills'>Счета</NavigateButton>
         <NavigateButton link='exchange'>Обмен</NavigateButton>
         <NavigateButton
+          link='login'
           iconName='logout'
           onClick={
-            () => {dispatch(logout())
+            () => {
+              dispatch(logout());
           }
         }>Выйти</NavigateButton>
       </> : <NavigateButton link='login'>Log in</NavigateButton>

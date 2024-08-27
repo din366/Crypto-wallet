@@ -1,4 +1,3 @@
-import {StrictMode} from 'react'
 import App from './App.jsx'
 import './global.module.scss'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";

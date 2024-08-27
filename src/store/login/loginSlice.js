@@ -14,8 +14,11 @@ const loginSlice = createSlice({
   name: "login/login",
   initialState,
   reducers: {
-    logout: (state) => {
+    clearToken: (state) => {
       state.token = '';
+    },
+    setToken: (state, action) => {
+      state.token = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -53,6 +56,11 @@ export const sendLoginRequest = createAsyncThunk(
   }
 )
 
+export const logout = createAsyncThunk('login/logout', (payload, { dispatch }) => {
+  dispatch(clearToken());
+  localStorage.removeItem('token');
+})
+
 // * selectors
 
 export const getLoading = (state) => state.login.loading;
@@ -60,9 +68,8 @@ export const getErrorData = (state) => state.login.error;
 export const getToken = (state) => state.login.token;
 
 export const {
-  setLogin,
-  setPassword,
-  logout
+  clearToken,
+  setToken
 } = loginSlice.actions;
 
 export const loginReducer = loginSlice.reducer;
