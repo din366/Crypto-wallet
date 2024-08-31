@@ -4,13 +4,11 @@ import Button from "../../../components/Button/Button.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getErrorData, getLoading, sendLoginRequest} from "../../../store/login/loginSlice.js";
 import {validate} from "./formikValidate.js";
-import {useNavigate} from "react-router-dom";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const loading = useSelector(getLoading);
   const sendError = useSelector(getErrorData);
-  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -22,8 +20,7 @@ const LoginForm = () => {
       if (Object.keys(errors).length > 0) {
         setErrors(errors);
       } else {
-        dispatch(sendLoginRequest(values));
-        navigate('/bills');
+          await dispatch(sendLoginRequest(values));
       }
       setSubmitting(false);
     },

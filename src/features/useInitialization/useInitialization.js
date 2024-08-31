@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setToken} from "../../store/login/loginSlice.js";
 
 export const useInitialization = () => {

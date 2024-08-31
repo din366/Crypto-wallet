@@ -36,7 +36,7 @@ const loginSlice = createSlice({
         state.error = null;
         state.token = action.payload?.token;
       })
-  }
+  } 
 });
 
 // * thunk

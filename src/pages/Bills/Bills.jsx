@@ -1,8 +1,13 @@
 import styles from "./Bills.module.scss";
 import Button from "../../components/Button/Button.jsx";
 import SingleBill from "./SingleBill/SingleBill.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {getAccountCurrencies, getCurrencies} from "../../store/account/account-slice.js";
+import {useEffect} from "react";
+import {getToken} from "../../store/login/loginSlice.js";
 
 const Bills = () => {
+  const dispatch = useDispatch();
   const billsData = [
     {
       "account": "11304142237773744060783754",
@@ -29,8 +34,14 @@ const Bills = () => {
       ]
     }
   ]
+  const data = useSelector(getCurrencies)
+  const token = useSelector(getToken);
 
+  useEffect(() => {
+    dispatch(getAccountCurrencies());
+  }, [token]);
 
+  console.log(data);
   return (
     <div className={styles.mainPage}>
       <div className="container">
