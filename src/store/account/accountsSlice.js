@@ -17,7 +17,7 @@ const initialState = {
   newAccountButtonIsActive: true,
 }
 
-const accountSlice = createSlice({
+const accountsSlice = createSlice({
   name: 'account/userAccount',
   initialState,
   reducers: {
@@ -42,7 +42,7 @@ const accountSlice = createSlice({
         case sortVariables.lastTransactionDate:
           state.currencies = state.currencies.sort((a, b) => {
             console.log(a.account)
-            return Date.parse(a.transactions[0]?.date) - Date.parse(b.transactions[0]?.date);
+            return Date.parse(a.transactions[0]?.date ?? 0) - Date.parse(b.transactions[0]?.date ?? 0);
           })
           break;
       }
@@ -145,5 +145,5 @@ export const getLoading = state => state.account.loading;
 export const newAccountButtonIsActive = state => state.account.newAccountButtonIsActive;
 
 
-export const {sortCurrencies} = accountSlice.actions;
-export const accountReducer = accountSlice.reducer;
+export const {sortCurrencies} = accountsSlice.actions;
+export const accountReducer = accountsSlice.reducer;

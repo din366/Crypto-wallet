@@ -7,7 +7,7 @@ import {
   getCurrencies, newAccount,
   newAccountButtonIsActive,
   sortCurrencies
-} from "../../store/account/account-slice.js";
+} from "../../store/account/accountsSlice.js";
 import {useEffect} from "react";
 import {getLoading, getToken} from "../../store/login/loginSlice.js";
 import {useNavigate} from "react-router-dom";

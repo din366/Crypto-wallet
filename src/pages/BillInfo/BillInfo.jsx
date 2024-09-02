@@ -6,11 +6,23 @@ import BillInfoDynamics from "./BillInfoDynamics/BillInfoDynamics.jsx";
 import BillInfoHistory from "./BillInfoHistory/BillInfoHistory.jsx";
 import BillInfoStatistics from "./BillInfoStatistics/BillInfoStatistics.jsx";
 import TransferForm from "./TransferForm/TransferForm.jsx";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getData, getSingleAccountData} from "../../store/singleAccount/SingleAccountSlice.js";
+import {getToken} from "../../store/login/loginSlice.js";
 
 const BillInfo = () => {
+  const dispatch = useDispatch();
+  const billData = useSelector(getData);
+  const token = useSelector(getToken);
   const navigate = useNavigate();
   const {billId} = useLoaderData();
 
+  useEffect(() => {
+    dispatch(getSingleAccountData(billId))
+  }, [token]);
+
+  console.log(billData)
   return (
     <div>
       <div className={styles.BillInfoPageWrapper}>
@@ -21,10 +33,10 @@ const BillInfo = () => {
           </div>
 
           <div className={styles.mainWrapper}>
-            <BillInfoDynamics />
+            {/*<BillInfoDynamics />
             <BillInfoHistory />
             <BillInfoStatistics />
-            <TransferForm />
+            <TransferForm />*/}
           </div>
         </div>
       </div>

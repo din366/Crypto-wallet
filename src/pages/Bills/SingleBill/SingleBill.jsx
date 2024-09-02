@@ -9,6 +9,7 @@ const SingleBill = ({data}) => {
     account,
     balance,
     transactions,
+    date,
   } = data;
 
   return (
@@ -17,11 +18,17 @@ const SingleBill = ({data}) => {
           <span className={styles.billAccount}>{account}</span>
           <span className={styles.billBalance}>{balance} RUB</span>
           <div className={styles.billLastTransactionWrapper}>
-            <span className={styles.billLastTransactionTitle}>Последняя транзацкия</span>
-            {transactions[0] ?
-              <span className={styles.billLastTransactionDate}>{convertData(transactions[0].date)}</span> :
-              'no transactions'
-            }
+            <div className={styles.billOpenWrapper}>
+              <span className={styles.billLastTransactionTitle}>Открыт</span>
+              <span className={styles.billOpen}>{convertData(date)}</span>
+            </div>
+            <div className="">
+              <span className={styles.billLastTransactionTitle}>Последняя транзацкия</span>
+              {transactions[0] ?
+                <span className={styles.billLastTransactionDate}>{convertData(transactions[0].date)}</span> :
+                <span className={styles.billLastTransactionDate}>no transactions</span>}
+            </div>
+
 
           </div>
         </div>
