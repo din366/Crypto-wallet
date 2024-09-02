@@ -1,18 +1,52 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {ACCOUNT_CURRENCY, CURRENCY_URL} from "../../globalVars.js";
+import {ACCOUNT_CURRENCY} from "../../globalVars.js";
 import axios from "axios";
+
+const sortVariables = {
+  openAccountDate: 'openAccountDate',
+  accountNumber: 'accountNumber',
+  balance: 'balance',
+  lastTransactionDate: 'lastTransactionDate',
+}
 
 const initialState = {
   loading: false,
   currencies: null,
-  sort: 'date',
+  sort: sortVariables.accountNumber,
   error: null,
 }
 
 const accountSlice = createSlice({
   name: 'account/userAccount',
   initialState,
-  reducers: {},
+  reducers: {
+    sortCurrencies: (state, action) => {
+      switch (action.payload) {
+        case sortVariables.openAccountDate:
+          state.currencies = state.currencies.sort((a, b) => {
+           return Date.parse(a.date) - Date.parse(b.date);
+          });
+          break;
+        case sortVariables.accountNumber:
+          state.currencies = state.currencies.sort((a, b) => {
+            return a.account - b.account;
+          })
+          break;
+        case sortVariables.balance:
+          state.currencies = state.currencies.sort((a, b) => {
+
+            return a.balance - b.balance;
+          })
+          break;
+        case sortVariables.lastTransactionDate:
+          state.currencies = state.currencies.sort((a, b) => {
+            console.log(a.account)
+            return Date.parse(a.transactions[0].date) - Date.parse(b.transactions[0].date);
+          })
+          break;
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAccountCurrencies.pending, (state) => {
@@ -60,5 +94,8 @@ export const getAccountCurrencies = createAsyncThunk(
 // * selectors
 
 export const getCurrencies = state => state.account.currencies;
+export const getLoading = state => state.account.loading;
 
+
+export const {sortCurrencies} = accountSlice.actions;
 export const accountReducer = accountSlice.reducer;
