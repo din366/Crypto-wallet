@@ -2,7 +2,12 @@ import styles from "./Bills.module.scss";
 import Button from "../../components/Button/Button.jsx";
 import SingleBill from "./SingleBill/SingleBill.jsx";
 import {useDispatch, useSelector} from "react-redux";
-import {getAccountCurrencies, getCurrencies, sortCurrencies} from "../../store/account/account-slice.js";
+import {
+  getAccountCurrencies,
+  getCurrencies, newAccount,
+  newAccountButtonIsActive,
+  sortCurrencies
+} from "../../store/account/account-slice.js";
 import {useEffect} from "react";
 import {getLoading, getToken} from "../../store/login/loginSlice.js";
 import {useNavigate} from "react-router-dom";
@@ -13,6 +18,7 @@ const Bills = () => {
   const token = useSelector(getToken);
   const navigate = useNavigate();
   const isLoading = useSelector(getLoading);
+  const newAccountIsLoading = useSelector(newAccountButtonIsActive);
 
   /*const getSortCurrencies = (event) => {
     const
@@ -36,7 +42,12 @@ const Bills = () => {
           <>
             <div className={styles.headTitle}>
               <h2>Здравствуйте, Александр!</h2>
-              <Button text='Открыть новый счет' padding='14px 40px'></Button>
+              <Button
+                text='Открыть новый счет'
+                padding='14px 40px'
+                disabled={!newAccountIsLoading}
+                func={newAccount}
+              ></Button>
             </div>
             <div className={styles.billsHeaderWrapper}>
               <div className={styles.billsTitle}><span>Мои счета</span></div>

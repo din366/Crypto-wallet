@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {ACCOUNT_CURRENCY} from "../../globalVars.js";
+import {ACCOUNT_CURRENCY, CREATE_ACCOUNT} from "../../globalVars.js";
 import axios from "axios";
 
 const sortVariables = {
@@ -14,6 +14,7 @@ const initialState = {
   currencies: null,
   sort: sortVariables.accountNumber,
   error: null,
+  newAccountButtonIsActive: true,
 }
 
 const accountSlice = createSlice({
@@ -41,7 +42,7 @@ const accountSlice = createSlice({
         case sortVariables.lastTransactionDate:
           state.currencies = state.currencies.sort((a, b) => {
             console.log(a.account)
-            return Date.parse(a.transactions[0].date) - Date.parse(b.transactions[0].date);
+            return Date.parse(a.transactions[0]?.date) - Date.parse(b.transactions[0]?.date);
           })
           break;
       }
@@ -61,6 +62,21 @@ const accountSlice = createSlice({
       .addCase(getAccountCurrencies.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(newAccount.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.newAccountButtonIsActive = false;
+      })
+      .addCase(newAccount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        state.newAccountButtonIsActive = false;
+      })
+      .addCase(newAccount.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+        state.newAccountButtonIsActive = true;
       })
   }
 })
@@ -86,15 +102,47 @@ export const getAccountCurrencies = createAsyncThunk(
       }
       return response.data.payload;
     } catch(err) {
-      rejectWithValue(err);
+      rejectWithValue(err.message);
     }
   }
 )
+
+export const newAccount = createAsyncThunk(
+  'account/newAccount',
+  async (_, {
+    getState,
+    dispatch,
+    rejectWithValue
+  }) => {
+    const state = getState();
+    const token = state.login.token;
+
+    try {
+      const response = await axios.post(CREATE_ACCOUNT, {}, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${token}`
+        }
+      })
+
+      if (response.data.error) {
+        rejectWithValue(response.data.error);
+      }
+
+      dispatch(getAccountCurrencies());
+      return response.data.payload;
+    } catch (err) {
+      rejectWithValue(err.message);
+    }
+  }
+)
+
 
 // * selectors
 
 export const getCurrencies = state => state.account.currencies;
 export const getLoading = state => state.account.loading;
+export const newAccountButtonIsActive = state => state.account.newAccountButtonIsActive;
 
 
 export const {sortCurrencies} = accountSlice.actions;

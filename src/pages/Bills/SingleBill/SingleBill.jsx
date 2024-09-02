@@ -18,7 +18,11 @@ const SingleBill = ({data}) => {
           <span className={styles.billBalance}>{balance} RUB</span>
           <div className={styles.billLastTransactionWrapper}>
             <span className={styles.billLastTransactionTitle}>Последняя транзацкия</span>
-            <span className={styles.billLastTransactionDate}>{convertData(data.transactions[0].date)}</span>
+            {transactions[0] ?
+              <span className={styles.billLastTransactionDate}>{convertData(transactions[0].date)}</span> :
+              'no transactions'
+            }
+
           </div>
         </div>
       </Link>
