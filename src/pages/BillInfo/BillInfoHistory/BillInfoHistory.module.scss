@@ -1,0 +1,79 @@
+@import './../../../globalVars.module.scss';
+
+.historyBlock {
+  .tableContainer::-webkit-scrollbar {
+    width: 10px;
+
+  }
+
+  .tableContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: $main-color-darker;
+    border-radius: 10px;
+  }
+
+  .tableContainer::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(136, 132, 216);
+  }
+
+  .tableContainer {
+    max-height: 320px;
+    border-radius: 10px;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+      width: 7px;
+      background-color: #223c50;
+
+    }
+    table {
+      background-color: $main-blocks-color;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+
+      tr {
+
+
+        td {
+          padding: 10px 20px;
+        }
+
+        td:first-child {
+          padding-left: 0;
+        }
+
+        td:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+
+  }
+}
+
+.tableRowsHeader {
+  td {
+    border-bottom: 1px solid $main-background-color;
+  }
+
+  td:first-child {
+    border-right: 1px solid $main-background-color;
+  }
+
+  td:last-child {
+    border-left: 1px solid $main-background-color;
+  }
+
+}
+
+.tableRows {
+
+  td:first-child {
+    border-right: 1px solid $main-background-color;
+  }
+
+  td:last-child {
+    border-left: 1px solid $main-background-color;
+  }
+}

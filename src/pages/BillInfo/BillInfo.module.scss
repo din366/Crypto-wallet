@@ -1,18 +1,23 @@
 @import './../../globalVars.module';
 
-.BillInfoPageWrapper{
+.BillInfoPageWrapper {
   background-color: $main-background-color;
   color: white;
   padding-top: 70px;
   min-height: calc(100vh - 80px - 70px);
 }
 
-.BillInfoTitleWrapper{
+.BillInfoTitleWrapper {
   display: flex;
   justify-content: space-between;
   margin-bottom: 70px;
 }
 
-.BillInfoTitle{
+.BillInfoTitle {
   margin: 0;
+}
+
+.mainWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
