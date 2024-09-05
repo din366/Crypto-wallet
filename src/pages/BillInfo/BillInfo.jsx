@@ -4,7 +4,6 @@ import Button from "../../components/Button/Button.jsx";
 import {useNavigate} from "react-router-dom";
 import BillInfoDynamics from "./BillInfoDynamics/BillInfoDynamics.jsx";
 import BillInfoHistory from "./BillInfoHistory/BillInfoHistory.jsx";
-import BillInfoStatistics from "./BillInfoStatistics/BillInfoStatistics.jsx";
 import TransferForm from "./TransferForm/TransferForm.jsx";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -42,7 +41,6 @@ const BillInfo = () => {
           <div className={styles.mainWrapper}>
             <BillInfoDynamics transactions={lastSixMonthTransactions}/>
             <BillInfoHistory transactionsHistory={transactionsHistory} currentAccount={billData?.account ? billData?.account : ''}/>
-            <BillInfoStatistics/>
           </div>
           <TransferForm/>
         </div>

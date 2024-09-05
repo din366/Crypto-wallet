@@ -1,8 +1,6 @@
 import styles from "./BillInfoHistory.module.scss";
 
 const BillInfoHistory = ({transactionsHistory, currentAccount}) => {
-    console.log(transactionsHistory)
-
     const getTransactionsAccount = (transaction) => {
       if (currentAccount === transaction.to) {
         return {

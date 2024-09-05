@@ -35,7 +35,7 @@ export const singleAccountSlice = createSlice({
 
 // * Thunk
 
-export const getSingleAccountData = createAsyncThunk(
+export const  getSingleAccountData = createAsyncThunk(
   'account/getSingleAccountData',
   async (id, {
     rejectWithValue,
@@ -51,13 +51,13 @@ export const getSingleAccountData = createAsyncThunk(
           "Authorization": `Basic ${token}`
         }
       })
-
       if (response.data.error) {
-        rejectWithValue(response.data.error);
+        return rejectWithValue(response.data.error);
       }
+      console.log(response.data.payload)
       return response.data.payload;
     } catch (err) {
-      rejectWithValue(err.message);
+      return rejectWithValue(err.message);
     }
   }
 )
@@ -72,9 +72,9 @@ export const getLastSixMonthTransactions = (state) => {
 
   const currentDate = new Date();
   const sixMonthsAgo = new Date();
-  sixMonthsAgo.setMonth(currentDate.getMonth() - 6); // ! change to 6 month (32 only for debug)
+  sixMonthsAgo.setMonth(currentDate.getMonth() - 6);
 
-  if (currentDate.getMonth() < 6) { // ! change to 6 month (32 only for debug)
+  if (currentDate.getMonth() < 6) {
     sixMonthsAgo.setFullYear(currentDate.getFullYear() - 1);
   }
 

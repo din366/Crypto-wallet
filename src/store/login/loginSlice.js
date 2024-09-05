@@ -3,8 +3,6 @@ import axios from "axios";
 import {LOGIN_URL} from "../../globalVars.js";
 
 const initialState = {
-  login: '',
-  password: '',
   token: null,
   loading: false,
   error: null,
