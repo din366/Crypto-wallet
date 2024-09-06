@@ -14,6 +14,7 @@ import {
 } from "../../store/singleAccount/SingleAccountSlice.js";
 import {getToken} from "../../store/login/loginSlice.js";
 import {getAccountCurrencies, getAllBillsNumbers} from "../../store/account/accountsSlice.js";
+import {BillInfoMainData} from "./BillInfoMainData/BillInfoMainData.jsx";
 
 const BillInfo = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const BillInfo = () => {
   const token = useSelector(getToken);
   const navigate = useNavigate();
   const {billId} = useLoaderData();
+
+
   useEffect(() => {
     dispatch(getSingleAccountData(billId))
 
@@ -42,7 +45,7 @@ const BillInfo = () => {
               navigate(-1)
             }} text='Вернуться'></Button>
           </div>
-
+          <BillInfoMainData billData={billData} lastTransaction={transactionsHistory[0]}/>
           <div className={styles.mainWrapper}>
             <BillInfoDynamics transactions={lastSixMonthTransactions}/>
             <BillInfoHistory transactionsHistory={transactionsHistory} currentAccount={billData?.account ? billData?.account : ''}/>

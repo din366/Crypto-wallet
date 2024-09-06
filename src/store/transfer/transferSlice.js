@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {TRANSFER_FUNDS} from "../../globalVars.js";
 import axios from "axios";
 import {getPopup} from "../popup/popupSlice.js";
+import {getSingleAccountData} from "../singleAccount/SingleAccountSlice.js";
 
 const initialState = {
   loading: false,
@@ -53,17 +54,25 @@ export const setTransferRequest = createAsyncThunk(
             "Authorization": `Basic ${token}`
           }
         });
-      console.log(response);
 
       if (response.data.error) {
+        dispatch(getPopup({
+          text: response.data.error === 'Overdraft prevented' ? 'Сумма перевода превышает сумму на счете' : response.data.error,
+          delay: 4000
+        }))
         return rejectWithValue(response.data.error);
       }
       dispatch(getPopup({
         text: 'Операция выполнена успешно',
         delay: 4000
       }))
+      dispatch(getSingleAccountData(currentAccount));
       return response.data.payload;
     } catch (err) {
+      dispatch(getPopup({
+        text: err.message,
+        delay: 4000
+      }))
       return rejectWithValue(err.message);
     }
 

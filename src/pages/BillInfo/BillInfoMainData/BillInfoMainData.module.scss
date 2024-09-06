@@ -1,0 +1,23 @@
+@import './../../../globalVars.module.scss';
+
+.billMainInfo{
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+
+  .billInfoWrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    background-color: $main-blocks-color;
+    border-radius: 10px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+
+    .billInfoBlock{
+      font-size: 18px;
+    }
+  }
+}
+

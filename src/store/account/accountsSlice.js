@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {ACCOUNT_CURRENCY, CREATE_ACCOUNT} from "../../globalVars.js";
 import axios from "axios";
 
@@ -141,7 +141,13 @@ export const newAccount = createAsyncThunk(
 // * selectors
 
 export const getCurrencies = state => state.account.currencies;
-export const getAllBillsNumbers = state => state.account.currencies?.map(item => item.account);
+
+const selectCurrencies = state => state.account.currencies; // * for getAllBillsNumbers selector (memoization)
+export const getAllBillsNumbers = createSelector(
+  [selectCurrencies],
+  (currencies) => currencies?.map(item => item.account)
+);
+
 export const getLoading = state => state.account.loading;
 export const newAccountButtonIsActive = state => state.account.newAccountButtonIsActive;
 

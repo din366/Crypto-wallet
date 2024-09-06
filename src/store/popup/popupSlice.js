@@ -16,9 +16,11 @@ const popupSlice = createSlice({
       state.delay = action.payload.delay;
     },
     hidePopup: (state) => {
-      state.text = '';
       state.isShow = false;
       state.delay = 1000;
+    },
+    clearInfoText: (state) => {
+      state.text = '';
     }
   }
 });
@@ -32,6 +34,9 @@ export const getPopup = createAsyncThunk(
     setTimeout(() => {
       dispatch(hidePopup());
     }, delay);
+    setTimeout(() => {
+      dispatch(clearInfoText())
+    }, delay + 500)
   }
 )
 
@@ -40,6 +45,7 @@ export const popupIsShow = state => state.popup.isShow;
 
 export const {
   showPopup,
-  hidePopup
+  hidePopup,
+  clearInfoText
 } = popupSlice.actions;
 export const popupReducer = popupSlice.reducer;

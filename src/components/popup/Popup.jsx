@@ -6,8 +6,6 @@ const Popup = () => {
   const text = useSelector(popupText);
   const showModal = useSelector(popupIsShow);
 
-  console.log(text, showModal);
-
   return (
     <div className={`${styles.popupWrapper} ${showModal ? styles.isShow : ''}`}>
       <span className={styles.popupText}>

@@ -8,7 +8,6 @@ import {validate} from "./formikValidateTransfer.js";
 const TransferForm = ({allBillsNumbers, currentAccount}) => {
   const dispatch = useDispatch();
   const loading = useSelector(getTransferLoading);
-  console.log(`loading!! ${loading}`)
   const firstBillNumber = (allBills) => {
     if (!allBills) return '';
     return allBills.filter(item => item !== currentAccount);
@@ -41,7 +40,7 @@ const TransferForm = ({allBillsNumbers, currentAccount}) => {
         <div className={styles.inputWrapper}>
           <label htmlFor="bill">Счет</label>
           <select name='bill' onChange={formik.handleChange} value={formik.values.bill}>
-            <option value="" disabled selected hidden>Выберите счет получателя</option>
+            <option value="" disabled hidden>Выберите счет получателя</option>
 
             {allBillsNumbers ? firstBillNumber(allBillsNumbers).map(item => <option key={item}
                                                                                     value={item}>{item}</option>) : ''}
