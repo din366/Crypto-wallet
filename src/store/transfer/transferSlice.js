@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {TRANSFER_FUNDS} from "../../globalVars.js";
 import axios from "axios";
+import {getPopup} from "../popup/popupSlice.js";
 
 const initialState = {
   loading: false,
@@ -33,11 +34,10 @@ const transferSlice = createSlice({
 
 export const setTransferRequest = createAsyncThunk(
   'transferRequest',
-  async ({bill, amount}, {getState, rejectWithValue}) => {
+  async ({bill, amount}, {getState, rejectWithValue, dispatch}) => {
     const state = getState();
     const token = state.login.token;
     const currentAccount = state.singleAccount.accountInfo.account;
-    console.log(currentAccount)
     const correctAmount = amount.replace(',', '.');
     try {
       const response = await axios.post(
@@ -58,6 +58,10 @@ export const setTransferRequest = createAsyncThunk(
       if (response.data.error) {
         return rejectWithValue(response.data.error);
       }
+      dispatch(getPopup({
+        text: 'Операция выполнена успешно',
+        delay: 4000
+      }))
       return response.data.payload;
     } catch (err) {
       return rejectWithValue(err.message);
@@ -68,6 +72,6 @@ export const setTransferRequest = createAsyncThunk(
 
 // * Selectors
 
-export const getTransferLoading = state => state.loading;
+export const getTransferLoading = state => state.transfer.loading;
 
 export const transferReducer = transferSlice.reducer;

@@ -1,0 +1,21 @@
+@import './../../globalVars.module.scss';
+
+.popupWrapper{
+  position: fixed;
+  bottom: 70px;
+  right: -400px;
+  padding: 15px 30px;
+  background-color: $main-background-color-popup;
+  color: $main-color-text-popup;
+  transition: 0.5s all;
+  border-radius: 10px;
+  z-index: 100;
+
+  .popupText{
+    font-size: 14px;
+  }
+}
+
+.isShow{
+  right: 50px;
+}

@@ -8,6 +8,7 @@ import {validate} from "./formikValidateTransfer.js";
 const TransferForm = ({allBillsNumbers, currentAccount}) => {
   const dispatch = useDispatch();
   const loading = useSelector(getTransferLoading);
+  console.log(`loading!! ${loading}`)
   const firstBillNumber = (allBills) => {
     if (!allBills) return '';
     return allBills.filter(item => item !== currentAccount);

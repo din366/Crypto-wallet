@@ -3,6 +3,7 @@ import {loginReducer} from "./login/loginSlice.js";
 import {accountReducer} from "./account/accountsSlice.js";
 import {singleAccountReducer} from "./singleAccount/SingleAccountSlice.js";
 import {transferReducer} from "./transfer/transferSlice.js";
+import {popupReducer} from "./popup/popupSlice.js";
 
 
 
@@ -12,6 +13,7 @@ const store = configureStore({
     account: accountReducer,
     singleAccount: singleAccountReducer,
     transfer: transferReducer,
+    popup: popupReducer,
   },
   /*middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware),*/
 });
