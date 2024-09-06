@@ -5,6 +5,19 @@
 
   .inputWrapper{
     width: 33%;
+    position: relative;
+
+    .inputErrorBlock{
+      position: absolute;
+      bottom: -20px;
+      border-radius: 10px;
+      left: 10px;
+      max-width: 300px;
+      padding: 6px;
+      background-color: #fa4f4f;
+      color: white;
+
+    }
   }
 
   label {
@@ -16,7 +29,7 @@
     width: 100%;
   }
 
-  input {
+  input, select {
     font-size: 18px;
     padding: 20px;
     border: none;

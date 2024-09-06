@@ -141,6 +141,7 @@ export const newAccount = createAsyncThunk(
 // * selectors
 
 export const getCurrencies = state => state.account.currencies;
+export const getAllBillsNumbers = state => state.account.currencies?.map(item => item.account);
 export const getLoading = state => state.account.loading;
 export const newAccountButtonIsActive = state => state.account.newAccountButtonIsActive;
 

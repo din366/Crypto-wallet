@@ -20,10 +20,6 @@ const Bills = () => {
   const isLoading = useSelector(getLoading);
   const newAccountIsLoading = useSelector(newAccountButtonIsActive);
 
-  /*const getSortCurrencies = (event) => {
-    const
-  };*/
-
   useEffect(() => {
     dispatch(getAccountCurrencies());
   }, [token]);
@@ -34,7 +30,6 @@ const Bills = () => {
     };
   }, []);
 
-  console.log(billsData);
   return (
     <div className={styles.mainPage}>
       <div className="container">

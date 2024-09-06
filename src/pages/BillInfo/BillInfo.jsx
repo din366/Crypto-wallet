@@ -13,18 +13,23 @@ import {
   getSingleAccountData, getTransactionsHistory
 } from "../../store/singleAccount/SingleAccountSlice.js";
 import {getToken} from "../../store/login/loginSlice.js";
+import {getAccountCurrencies, getAllBillsNumbers} from "../../store/account/accountsSlice.js";
 
 const BillInfo = () => {
   const dispatch = useDispatch();
   const billData = useSelector(getData);
   const lastSixMonthTransactions = useSelector(getLastSixMonthTransactions);
   const transactionsHistory = useSelector(getTransactionsHistory);
+  const allBillsNumbers = useSelector(getAllBillsNumbers);
   const token = useSelector(getToken);
   const navigate = useNavigate();
   const {billId} = useLoaderData();
-
   useEffect(() => {
     dispatch(getSingleAccountData(billId))
+
+    if (!allBillsNumbers && token) {
+      dispatch(getAccountCurrencies())
+    }
   }, [token]);
 
   return (
@@ -42,7 +47,7 @@ const BillInfo = () => {
             <BillInfoDynamics transactions={lastSixMonthTransactions}/>
             <BillInfoHistory transactionsHistory={transactionsHistory} currentAccount={billData?.account ? billData?.account : ''}/>
           </div>
-          <TransferForm/>
+          <TransferForm allBillsNumbers={allBillsNumbers} currentAccount={billData?.account ? billData?.account : ''}/>
         </div>
       </div>
     </div>

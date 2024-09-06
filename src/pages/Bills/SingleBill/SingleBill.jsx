@@ -16,7 +16,7 @@ const SingleBill = ({data}) => {
       <Link style={{textDecoration: 'none'}} to={`${account}`} >
         <div className={styles.billBlock}>
           <span className={styles.billAccount}>{account}</span>
-          <span className={styles.billBalance}>{balance} RUB</span>
+          <span className={styles.billBalance}>{balance.toFixed(2)} RUB</span>
           <div className={styles.billLastTransactionWrapper}>
             <div className={styles.billOpenWrapper}>
               <span className={styles.billLastTransactionTitle}>Открыт</span>

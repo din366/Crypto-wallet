@@ -4,25 +4,32 @@ import Button from "../../../components/Button/Button.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getTransferLoading, setTransferRequest} from "../../../store/transfer/transferSlice.js";
 import {validate} from "./formikValidateTransfer.js";
-const TransferForm = () => {
+
+const TransferForm = ({allBillsNumbers, currentAccount}) => {
   const dispatch = useDispatch();
   const loading = useSelector(getTransferLoading);
+  const firstBillNumber = (allBills) => {
+    if (!allBills) return '';
+    return allBills.filter(item => item !== currentAccount);
+  }
 
   const formik = useFormik({
     initialValues: {
       bill: '',
       amount: '',
     },
-    onSubmit: async ({bill, amount}, { setSubmitting, setErrors }) => {
+    onSubmit: async ({bill, amount}, {setSubmitting, setErrors, resetForm}) => {
 
       const errors = await validate(bill, amount.replace(',', '.'));
       if (Object.keys(errors).length > 0) {
         setErrors(errors);
       } else {
         await dispatch(setTransferRequest({bill, amount}));
+        await resetForm();
       }
       setSubmitting(false);
     },
+
   })
 
   return (
@@ -32,16 +39,15 @@ const TransferForm = () => {
       <form onSubmit={formik.handleSubmit}>
         <div className={styles.inputWrapper}>
           <label htmlFor="bill">Счет</label>
-          <input
-            id="bill"
-            name="bill"
-            type="text"
-            placeholder='Введите счет получателя'
-            onChange={formik.handleChange}
-            value={formik.values.bill}
-          />
-          {formik.errors.bill && <div>{formik.errors.bill}</div>}
+          <select name='bill' onChange={formik.handleChange} value={formik.values.bill}>
+            <option value="" disabled selected hidden>Выберите счет получателя</option>
+
+            {allBillsNumbers ? firstBillNumber(allBillsNumbers).map(item => <option key={item}
+                                                                                    value={item}>{item}</option>) : ''}
+          </select>
+          {formik.errors.bill && <div className={styles.inputErrorBlock}>{formik.errors.bill}</div>}
         </div>
+
 
         <div className={styles.inputWrapper}>
           <label htmlFor="amount">Сумма</label>
@@ -53,14 +59,14 @@ const TransferForm = () => {
             onChange={formik.handleChange}
             value={formik.values.amount}
           />
-          {formik.errors.amount && <div>{formik.errors.amount}</div>}
+          {formik.errors.amount && <div className={styles.inputErrorBlock}>{formik.errors.amount}</div>}
         </div>
 
         <div className={styles.inputWrapper}>
           <Button
             type='submit'
             text='Перевести'
-            padding= '20px 70px'
+            padding='20px 70px'
             fontSize={18}
             width='100%'
             disabled={loading}
