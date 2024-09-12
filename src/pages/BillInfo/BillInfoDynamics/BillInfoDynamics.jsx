@@ -1,5 +1,5 @@
 import styles from "./BillInfoDynamics.module.scss";
-import {CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area, ResponsiveContainer} from 'recharts';
+import {CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area} from 'recharts';
 
 const BillInfoDynamics = ({transactions}) => {
   return (
@@ -15,29 +15,22 @@ const BillInfoDynamics = ({transactions}) => {
                 margin={{
                   top: 10,
                   right: 30,
-                  left: 0,
+                  left: transactions.find(item => item.count > 1000000) ? 20 : 10,
                   bottom: 0,
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3"/>
-                <CustomXAxis/>
-                <CustomYAxis/>
+
+                <XAxis dataKey='name' tickSize={15}/>
+                <YAxis dataKey='count' />
                 <Tooltip/>
-                <Area type="monotone" dataKey="count" stroke="#8884d8" fill="#8884d8"/>
+                <Area type="monotone" dataKey="count" name='Сумма' stroke="#8884d8" fill="#8884d8"/>
               </AreaChart>
         </div>
       }
 
     </div>
   );
-};
-
-const CustomXAxis = ({dataKey = "name", ...props}) => {
-  return <XAxis dataKey={dataKey} {...props} />;
-};
-
-const CustomYAxis = ({width = 50, height = 320, ...props}) => {
-  return <YAxis width={width} height={height} {...props} />;
 };
 
 export default BillInfoDynamics;

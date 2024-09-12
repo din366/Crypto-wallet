@@ -58,11 +58,10 @@ const ExchangeForm = () => {
 
         <div className={styles.buttonWrapper}>
           <Button
-            text='Обменять'
             padding='10px 30px'
             fontSize={16}
             width='30%'
-          ></Button>
+          >Обменять</Button>
         </div>
       </form>
     </div>

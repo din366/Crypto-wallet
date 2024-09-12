@@ -3,6 +3,7 @@ import {TRANSFER_FUNDS} from "../../globalVars.js";
 import axios from "axios";
 import {getPopup} from "../popup/popupSlice.js";
 import {getSingleAccountData} from "../singleAccount/SingleAccountSlice.js";
+import {getAccountCurrencies} from "../account/accountsSlice.js";
 
 const initialState = {
   loading: false,
@@ -67,6 +68,7 @@ export const setTransferRequest = createAsyncThunk(
         delay: 4000
       }))
       dispatch(getSingleAccountData(currentAccount));
+      dispatch(getAccountCurrencies());
       return response.data.payload;
     } catch (err) {
       dispatch(getPopup({

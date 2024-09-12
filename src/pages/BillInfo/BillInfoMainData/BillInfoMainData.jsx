@@ -19,7 +19,7 @@ export const BillInfoMainData = ({billData, lastTransaction}) => {
           <span>Текущий баланс счета: {billData && billData.balance.toFixed(2)} RUB</span>
         </div>
         <div className={styles.billInfoBlock}>
-          <span>Последняя транзацкия: {lastTransaction && convertData(lastTransaction.date)} </span>
+          <span>Последняя транзацкия: {lastTransaction ? convertData(lastTransaction.date) : 'no transactions yet'} </span>
         </div>
       </div>
     </div>

@@ -54,14 +54,13 @@ const LoginForm = () => {
         {sendError ? <div className={styles.errorBlock}>{sendError}</div> : null}
 
         <Button
-          text='Вход'
           type='submit'
           width={100 + '%'}
           padding= '20px 140px'
           marginTop={10}
           fontSize={18}
           disabled={loading}
-        ></Button>
+        >Вход</Button>
       </form>
     </div>
   );

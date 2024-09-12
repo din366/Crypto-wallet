@@ -8,9 +8,9 @@ import {validate} from "./formikValidateTransfer.js";
 const TransferForm = ({allBillsNumbers, currentAccount}) => {
   const dispatch = useDispatch();
   const loading = useSelector(getTransferLoading);
-  const firstBillNumber = (allBills) => {
+  const getBillNumbersWithoutCurrentAccount = (allBills) => {
     if (!allBills) return '';
-    return allBills.filter(item => item !== currentAccount);
+    return allBills.filter(item => item.account !== currentAccount);
   }
 
   const formik = useFormik({
@@ -42,8 +42,8 @@ const TransferForm = ({allBillsNumbers, currentAccount}) => {
           <select name='bill' onChange={formik.handleChange} value={formik.values.bill}>
             <option value="" disabled hidden>Выберите счет получателя</option>
 
-            {allBillsNumbers ? firstBillNumber(allBillsNumbers).map(item => <option key={item}
-                                                                                    value={item}>{item}</option>) : ''}
+            {allBillsNumbers ? getBillNumbersWithoutCurrentAccount(allBillsNumbers).map(item => <option key={item.account}
+                                                                                    value={item.account}>{item.account} [{item.balance} RUB]</option>) : ''}
           </select>
           {formik.errors.bill && <div className={styles.inputErrorBlock}>{formik.errors.bill}</div>}
         </div>
@@ -65,12 +65,11 @@ const TransferForm = ({allBillsNumbers, currentAccount}) => {
         <div className={styles.inputWrapper}>
           <Button
             type='submit'
-            text='Перевести'
             padding='20px 70px'
             fontSize={18}
             width='100%'
             disabled={loading}
-          ></Button>
+          >Перевести</Button>
         </div>
       </form>
     </div>

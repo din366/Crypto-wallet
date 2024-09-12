@@ -145,7 +145,7 @@ export const getCurrencies = state => state.account.currencies;
 const selectCurrencies = state => state.account.currencies; // * for getAllBillsNumbers selector (memoization)
 export const getAllBillsNumbers = createSelector(
   [selectCurrencies],
-  (currencies) => currencies?.map(item => item.account)
+  (currencies) => currencies?.map(item => ({account: item.account, balance: item.balance.toFixed(2)}))
 );
 
 export const getLoading = state => state.account.loading;

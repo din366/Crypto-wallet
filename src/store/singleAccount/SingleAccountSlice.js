@@ -2,6 +2,7 @@ import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {getAccountIdData} from "../../globalVars.js";
 import {groupBillsByMonth} from "../../features/groupBillsByMonth/groupBillsByMonth.js";
+import {groupedTransactionsByMonth} from "../../features/groupedTransactionsByMonth/groupedTransactionsByMonth.js";
 
 
 const initialState = {
@@ -50,10 +51,11 @@ export const  getSingleAccountData = createAsyncThunk(
           "Content-Type": "application/json",
           "Authorization": `Basic ${token}`
         }
-      })
+      });
       if (response.data.error) {
         return rejectWithValue(response.data.error);
       }
+
       return response.data.payload;
     } catch (err) {
       return rejectWithValue(err.message);
@@ -73,21 +75,7 @@ export const getLastSixMonthTransactions = createSelector(
       return false;
     }
 
-    const currentDate = new Date();
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(currentDate.getMonth() - 6);
-
-    if (currentDate.getMonth() < 6) {
-      sixMonthsAgo.setFullYear(currentDate.getFullYear() - 1);
-    }
-
-    const transactions = accountInfo.transactions.filter(item => {
-      const date = new Date(item.date);
-      return date >= sixMonthsAgo;
-    }).sort((a, b) => {
-      return Date.parse(a.date) - Date.parse(b.date);
-    });
-
+    const transactions = groupedTransactionsByMonth(accountInfo.transactions,6);
     return groupBillsByMonth(transactions);
   }
 );

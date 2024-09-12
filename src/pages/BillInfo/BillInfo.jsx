@@ -41,9 +41,12 @@ const BillInfo = () => {
         <div className="container">
           <div className={styles.BillInfoTitleWrapper}>
             <h2 className={styles.BillInfoTitle}>Счет №{billId}</h2>
-            <Button padding='14px 40px' func={() => {
-              navigate(-1)
-            }} text='Вернуться'></Button>
+            <Button
+              padding='14px 40px'
+              func={() => {
+                navigate('/bills');
+              }}
+              isDispatching={false}>Вернуться</Button>
           </div>
           <BillInfoMainData billData={billData} lastTransaction={transactionsHistory[0]}/>
           <div className={styles.mainWrapper}>

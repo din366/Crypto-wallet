@@ -38,11 +38,10 @@ const Bills = () => {
             <div className={styles.headTitle}>
               <h2>Здравствуйте, Александр!</h2>
               <Button
-                text='Открыть новый счет'
                 padding='14px 40px'
                 disabled={!newAccountIsLoading}
                 func={newAccount}
-              ></Button>
+              >Открыть новый счет</Button>
             </div>
             <div className={styles.billsHeaderWrapper}>
               <div className={styles.billsTitle}><span>Мои счета</span></div>
