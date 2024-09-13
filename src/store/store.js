@@ -4,6 +4,7 @@ import {accountReducer} from "./account/accountsSlice.js";
 import {singleAccountReducer} from "./singleAccount/SingleAccountSlice.js";
 import {transferReducer} from "./transfer/transferSlice.js";
 import {popupReducer} from "./popup/popupSlice.js";
+import {changeCourseWebsocketReducer} from "./changeCourseWebsocket/changeCourseWebsocketSlice.js";
 
 
 
@@ -14,6 +15,7 @@ const store = configureStore({
     singleAccount: singleAccountReducer,
     transfer: transferReducer,
     popup: popupReducer,
+    changeCourse: changeCourseWebsocketReducer,
   },
   /*middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware),*/
 });

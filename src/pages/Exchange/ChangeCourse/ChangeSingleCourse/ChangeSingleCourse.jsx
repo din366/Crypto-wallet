@@ -2,17 +2,18 @@ import styles from './ChangeSingleCourse.module.scss';
 import greenArrow from './icons/arrow-green.png';
 import redArrow from './icons/arrow-red.png';
 
-const ChangeSingleCourse = ({isUp}) => {
+const ChangeSingleCourse = ({from, to, rate, change}) => {
+
   return (
     <div className={styles.changeSingleCourseWrapper}>
       <div className={styles.courseName}>
-        <span>AUD/BTC</span>
+        <span>{from}/{to}</span>
       </div>
       <div className={styles.underlineBlock}></div>
       <div className={styles.courseDynamics}>
-        <span className={styles.courseDynamicsValue}>+4,754</span>
+        <span className={styles.courseDynamicsValue}>{change > 0 ? '+'+rate : '-'+rate}</span>
         <span className={styles.courseDynamicsArrow}>
-          <img className={isUp ? styles.rotateGreenArrow : styles.rotateRedArrow} src={isUp ? greenArrow : redArrow} alt=""/>
+          <img className={change > 0 ? styles.rotateGreenArrow : styles.rotateRedArrow} src={change > 0 ? greenArrow : redArrow} alt=""/>
         </span>
       </div>
     </div>

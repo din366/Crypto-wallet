@@ -5,6 +5,7 @@
   margin-bottom: 20px;
   box-sizing: border-box;
 
+
   .changeCourseWrapper{
     display: flex;
     background-color: $main-blocks-color;
@@ -14,8 +15,10 @@
     box-sizing: border-box;
 
     .changeCourseBlock{
+      box-sizing: border-box;
       font-size: 18px;
       width: 100%;
+      min-height: 455px;
     }
   }
 }
