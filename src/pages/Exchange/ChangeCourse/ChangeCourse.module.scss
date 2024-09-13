@@ -1,0 +1,21 @@
+@import './../../../globalVars.module.scss';
+
+.changeCourseInfo{
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+
+  .changeCourseWrapper{
+    display: flex;
+    background-color: $main-blocks-color;
+    border-radius: 10px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+
+    .changeCourseBlock{
+      font-size: 18px;
+      width: 100%;
+    }
+  }
+}

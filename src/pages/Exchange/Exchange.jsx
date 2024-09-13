@@ -1,5 +1,6 @@
 import styles from './Exchange.module.scss';
 import ExchangeForm from "./ExchangeForm/ExchangeForm.jsx";
+import ChangeCourse from "./ChangeCourse/ChangeCounse.jsx";
 
 const Exchange = () => {
   return (
@@ -9,15 +10,14 @@ const Exchange = () => {
           <h2 className={styles.exchangeTitle}>Обмен валюты</h2>
         </div>
 
-        <div className={styles.exchangeWrapper}>
-          <div className={styles.changeCourcesBlock}>
-            <h3>Изменение курса в режиме реального времени</h3>
+        <div className={styles.exchangeFlexWrapper}>
+          <ChangeCourse />
+
+          <div className={styles.exchangeCurrency}>
+            <ExchangeForm />
           </div>
         </div>
-        
-        <div className={styles.exchangeCurrency}>
-          <ExchangeForm />
-        </div>
+
       </div>
     </div>
   );

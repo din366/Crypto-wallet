@@ -1,0 +1,48 @@
+@import './../../../../globalVars.module.scss';
+
+.changeSingleCourseWrapper{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .courseName{
+
+  }
+
+  .underlineBlock{
+    width: 100%;
+    border-bottom: 2px solid $main-blocks-color-darker;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  .courseDynamics{
+    display: flex;
+  }
+
+  .courseDynamicsValue{
+    margin-right: 8px;
+  }
+
+  .courseDynamicsArrow{
+    display: flex;
+    align-items: center;
+
+    .rotateGreenArrow {
+      transform: rotate(-90deg);
+    }
+
+    .rotateRedArrow {
+      transform: rotate(90deg);
+    }
+
+    img{
+      max-width: 10px;
+    }
+  }
+}
