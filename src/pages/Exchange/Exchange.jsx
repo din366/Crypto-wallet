@@ -2,8 +2,12 @@ import styles from './Exchange.module.scss';
 import ExchangeForm from "./ExchangeForm/ExchangeForm.jsx";
 import ChangeCourse from "./ChangeCourse/ChangeCounse.jsx";
 import MyCurrencies from "./MyСurrencies/MyCurrencies.jsx";
+import {useSelector} from "react-redux";
+import {getToken} from "../../store/login/loginSlice.js";
 
 const Exchange = () => {
+  const token = useSelector(getToken);
+
   return (
     <div className={styles.exchangePageWrapper}>
       <div className="container">
@@ -14,14 +18,18 @@ const Exchange = () => {
         <div className={styles.exchangeFlexWrapper}>
           <ChangeCourse />
 
-          <div className={styles.exchangeCurrencyWrapper}>
+          {token ? <div className={styles.exchangeCurrencyWrapper}>
             <div className={styles.exchangeCurrency}>
-              <MyCurrencies />
+              <MyCurrencies/>
             </div>
             <div className={styles.exchangeCurrency}>
               <ExchangeForm/>
             </div>
-          </div>
+          </div> : <div className={styles.unauthorizedBlock}>
+            <span>Вы не авторизованы</span>
+            <span>Для выполнения перевода вам необходимо авторизоваться</span>
+          </div>}
+
 
         </div>
 

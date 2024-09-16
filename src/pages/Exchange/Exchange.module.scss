@@ -34,4 +34,15 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+
+  .unauthorizedBlock{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    background-color: $main-blocks-color;
+    padding: 30px;
+    border-radius: 10px;
+  }
 }
