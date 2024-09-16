@@ -55,7 +55,6 @@ export const  getSingleAccountData = createAsyncThunk(
       if (response.data.error) {
         return rejectWithValue(response.data.error);
       }
-
       return response.data.payload;
     } catch (err) {
       return rejectWithValue(err.message);

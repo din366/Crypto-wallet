@@ -1,0 +1,13 @@
+@import './../../../../globalVars.module.scss';
+
+.currencyWrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.underline{
+  width: 100%;
+  border-bottom: 2px solid $main-blocks-color-darker;
+  margin-left: 5px;
+  margin-right: 5px;
+}

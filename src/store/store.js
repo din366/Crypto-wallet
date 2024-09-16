@@ -5,6 +5,7 @@ import {singleAccountReducer} from "./singleAccount/SingleAccountSlice.js";
 import {transferReducer} from "./transfer/transferSlice.js";
 import {popupReducer} from "./popup/popupSlice.js";
 import {changeCourseWebsocketReducer} from "./changeCourseWebsocket/changeCourseWebsocketSlice.js";
+import {currencyExchangeReducer} from "./currencyExchange/currencyExchangeSlice.js";
 
 
 
@@ -16,6 +17,7 @@ const store = configureStore({
     transfer: transferReducer,
     popup: popupReducer,
     changeCourse: changeCourseWebsocketReducer,
+    currencyExchange: currencyExchangeReducer,
   },
   /*middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware),*/
 });
