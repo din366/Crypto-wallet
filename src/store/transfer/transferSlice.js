@@ -59,7 +59,8 @@ export const setTransferRequest = createAsyncThunk(
       if (response.data.error) {
         dispatch(getPopup({
           text: response.data.error === 'Overdraft prevented' ? 'Сумма перевода превышает сумму на счете' : response.data.error,
-          delay: 4000
+          delay: 4000,
+          type: 'alert'
         }))
         return rejectWithValue(response.data.error);
       }

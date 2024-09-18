@@ -98,11 +98,11 @@ export const getAccountCurrencies = createAsyncThunk(
         }
       })
       if (response.data.error) {
-        rejectWithValue(response.data.error);
+        return rejectWithValue(response.data.error);
       }
       return response.data.payload;
     } catch(err) {
-      rejectWithValue(err.message);
+      return rejectWithValue(err.message);
     }
   }
 )
@@ -126,13 +126,13 @@ export const newAccount = createAsyncThunk(
       })
 
       if (response.data.error) {
-        rejectWithValue(response.data.error);
+        return rejectWithValue(response.data.error);
       }
 
       dispatch(getAccountCurrencies());
       return response.data.payload;
     } catch (err) {
-      rejectWithValue(err.message);
+      return rejectWithValue(err.message);
     }
   }
 )

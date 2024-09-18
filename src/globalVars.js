@@ -5,5 +5,6 @@ export const ACCOUNT_CURRENCY = MAIN_URL + 'accounts';
 export const CREATE_ACCOUNT = MAIN_URL + 'create-account';
 export const TRANSFER_FUNDS = MAIN_URL + 'transfer-funds';
 export const CURRENCY_FEED = MAIN_URL + 'currency-feed';
+export const COIN_EXCHANGE = MAIN_URL + 'currency-buy';
 
 export const getAccountIdData = (id) => MAIN_URL + `account/${id}`;

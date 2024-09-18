@@ -1,11 +1,14 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {ACCOUNT_CURRENCY_FOR_EXCHANGE} from "../../globalVars.js";
+import {ACCOUNT_CURRENCY_FOR_EXCHANGE, COIN_EXCHANGE} from "../../globalVars.js";
+import {getPopup} from "../popup/popupSlice.js";
 
 const initialState = {
   availableCurrencies: null,
   loading: false,
   error: false,
+  exchangeError: null,
+  exchangeLoading: false,
 }
 
 const CurrencyExchangeSlice = createSlice({
@@ -26,6 +29,18 @@ const CurrencyExchangeSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
+    builder.addCase(makeExchange.pending, (state) => {
+      state.exchangeLoading = true;
+      state.exchangeError = null;
+    });
+    builder.addCase(makeExchange.fulfilled, (state) => {
+      state.exchangeLoading = false;
+      state.exchangeError = null;
+    });
+    builder.addCase(makeExchange.rejected, (state, action) => {
+      state.exchangeError = action.payload;
+      state.exchangeLoading = false;
+    })
   }
 });
 
@@ -47,16 +62,74 @@ export const getAvailableCurrencies = createAsyncThunk(
       });
 
       if (response.data.error) {
-        rejectWithValue(response.data.error);
+        return rejectWithValue(response.data.error);
       }
-      console.log(response.data.payload);
       return response.data.payload;
       } catch (err) {
-      rejectWithValue(err);
+      return rejectWithValue(err);
     }
   }
 )
 
-export const availableCurrencies = state => state.currencyExchange.availableCurrencies;
+export const makeExchange = createAsyncThunk(
+  'currencyExchange/makeExchange',
+  async (data, {
+    rejectWithValue,
+    getState,
+    dispatch
+  }) => {
+    const state = getState();
+    const token = state.login.token;
+
+    try {
+      const response = await axios.post(COIN_EXCHANGE, {
+        from: data.from,
+        to: data.to,
+        amount: data.amount
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${token}`
+        }
+      });
+
+      if (response.data.error) {
+        dispatch(getPopup({
+          text: response.data.error === 'Not enough currency' ? 'Недостаточно средств на счете' : response.data.error,
+          delay: 4000,
+          type: 'alert',
+        }));
+        return rejectWithValue(response.data.error);
+      }
+      dispatch(getAvailableCurrencies());
+      return response.data.payload;
+    } catch (err) {
+      dispatch(getPopup({
+        text: err,
+        delay: 4000,
+        type: 'alert',
+      }));
+      return rejectWithValue(err);
+    }
+  }
+)
+
+export const currencies = state => state.currencyExchange.availableCurrencies;
+export const exchangeLoading = state => state.currencyExchange.exchangeLoading;
+
+export const availableCurrencies = createSelector(
+  [currencies],
+  (currencies) => {
+  return currencies ? Object.values(currencies).map(({code, amount}) => ({code: code, amount: +amount.toFixed(9)})) : null;
+})
+
+export const availableCurrenciesOnlyName = createSelector(
+  [availableCurrencies],
+  (currencies) => {
+    return currencies ?
+      Object.values(currencies).map(item => item.code):
+      null;
+  }
+)
 
 export const currencyExchangeReducer =  CurrencyExchangeSlice.reducer;

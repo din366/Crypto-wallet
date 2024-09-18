@@ -4,6 +4,7 @@ const initialState = {
   text: '',
   isShow: false,
   delay: 1000,
+  type: 'normal'
 }
 
 const popupSlice = createSlice({
@@ -14,10 +15,12 @@ const popupSlice = createSlice({
       state.text = action.payload.text;
       state.isShow = true;
       state.delay = action.payload.delay;
+      state.type = action.payload.type;
     },
     hidePopup: (state) => {
       state.isShow = false;
       state.delay = 1000;
+      state.type = 'normal';
     },
     clearInfoText: (state) => {
       state.text = '';
@@ -27,10 +30,10 @@ const popupSlice = createSlice({
 
 export const getPopup = createAsyncThunk(
   'getPopup',
-  ({text, delay}, {
+  ({text, delay, type = 'normal'}, {
     dispatch
   }) => {
-    dispatch(showPopup({text, delay}));
+    dispatch(showPopup({text, delay, type}));
     setTimeout(() => {
       dispatch(hidePopup());
     }, delay);
@@ -42,6 +45,7 @@ export const getPopup = createAsyncThunk(
 
 export const popupText = state => state.popup.text;
 export const popupIsShow = state => state.popup.isShow;
+export const popupType = state => state.popup.type;
 
 export const {
   showPopup,
