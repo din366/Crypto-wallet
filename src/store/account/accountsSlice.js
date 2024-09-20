@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {ACCOUNT_CURRENCY, CREATE_ACCOUNT} from "../../globalVars.js";
 import axios from "axios";
+import {getPopup} from "../popup/popupSlice.js";
 
 const sortVariables = {
   openAccountDate: 'openAccountDate',
@@ -128,8 +129,11 @@ export const newAccount = createAsyncThunk(
       if (response.data.error) {
         return rejectWithValue(response.data.error);
       }
-
       dispatch(getAccountCurrencies());
+      dispatch(getPopup({
+        text: 'Новый аккаунт создан',
+        delay: 4000
+      }))
       return response.data.payload;
     } catch (err) {
       return rejectWithValue(err.message);

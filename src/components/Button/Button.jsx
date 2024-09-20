@@ -8,7 +8,7 @@ const Button = ({
                   disabled = false,
                   fontSize = '',
                   isDispatching = true,
-  children,
+                  children,
                   ...args
 }) => {
   const dispatch = useDispatch();

@@ -102,6 +102,10 @@ export const makeExchange = createAsyncThunk(
         return rejectWithValue(response.data.error);
       }
       dispatch(getAvailableCurrencies());
+      dispatch(getPopup({
+        text: 'Операция выполнена успешно',
+        delay: 4000
+      }));
       return response.data.payload;
     } catch (err) {
       dispatch(getPopup({

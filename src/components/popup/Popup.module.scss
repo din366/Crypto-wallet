@@ -24,3 +24,21 @@
   background-color: #e14949;
   color: white;
 }
+
+@media (max-width: 600px) {
+  .popupWrapper {
+    top: -200px;
+    right: 20px;
+    left: 20px;
+    text-align: center;
+    padding: 15px 15px;
+
+    .popupText{
+      font-size: 14px;
+    }
+  }
+
+  .isShow{
+    top: 30px;
+  }
+}

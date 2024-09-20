@@ -8,13 +8,18 @@ import {createRoot} from "react-dom/client";
 import BillInfo from "./pages/BillInfo/BillInfo.jsx";
 import {Provider} from "react-redux";
 import store from "./store/store.js";
+import ErrorInfo from "./pages/ErrorInfo/ErrorInfo.jsx";
+import Main from "./pages/Main/Main.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <App/>,
-    /*errorElement: <ErrorInfo />,*/
+    errorElement: <ErrorInfo />,
     children: [
+      {
+        path: "/",
+        element: <Main />,
+      },
       {
         path: "bills",
         element: <Bills/>,

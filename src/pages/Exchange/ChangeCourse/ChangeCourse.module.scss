@@ -22,3 +22,17 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .changeCourseInfo{
+    .changeCourseWrapper{
+      padding: 20px;
+
+      .changeCourseBlock{
+        font-size: 15px;
+      }
+    }
+
+
+  }
+}

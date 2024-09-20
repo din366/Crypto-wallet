@@ -4,11 +4,13 @@ import Button from "../../../components/Button/Button.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {getErrorData, getLoading, sendLoginRequest} from "../../../store/login/loginSlice.js";
 import {validate} from "./formikValidate.js";
+import {useResize} from "../../../features/useResize/useResize.js";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const loading = useSelector(getLoading);
   const sendError = useSelector(getErrorData);
+  const resize = useResize();
 
   const formik = useFormik({
     initialValues: {
@@ -56,7 +58,7 @@ const LoginForm = () => {
         <Button
           type='submit'
           width={100 + '%'}
-          padding= '20px 140px'
+          padding= {`20px ${resize < 450 ? 70 : 140}px`}
           marginTop={10}
           fontSize={18}
           disabled={loading}

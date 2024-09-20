@@ -56,3 +56,13 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+@media (max-width: 400px) {
+  .billBalance {
+    font-size: 25px;
+  }
+
+  .billLastTransactionWrapper {
+    font-size: 12px;
+  }
+}

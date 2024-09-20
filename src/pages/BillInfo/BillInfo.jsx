@@ -15,6 +15,7 @@ import {
 import {getToken} from "../../store/login/loginSlice.js";
 import {getAccountCurrencies, getAllBillsNumbers} from "../../store/account/accountsSlice.js";
 import {BillInfoMainData} from "./BillInfoMainData/BillInfoMainData.jsx";
+import {useResize} from "../../features/useResize/useResize.js";
 
 const BillInfo = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const BillInfo = () => {
   const token = useSelector(getToken);
   const navigate = useNavigate();
   const {billId} = useLoaderData();
+  const resize = useResize();
 
 
   useEffect(() => {
@@ -40,9 +42,10 @@ const BillInfo = () => {
       <div className={styles.BillInfoPageWrapper}>
         <div className="container">
           <div className={styles.BillInfoTitleWrapper}>
-            <h2 className={styles.BillInfoTitle}>Счет №{billId}</h2>
+            <h2 className={styles.BillInfoTitle}>Счет <span>№{billId}</span></h2>
             <Button
               padding='14px 40px'
+              width={resize < 400 ? 100+'%' : ''}
               func={() => {
                 navigate('/bills');
               }}
@@ -50,7 +53,7 @@ const BillInfo = () => {
           </div>
           <BillInfoMainData billData={billData} lastTransaction={transactionsHistory[0]}/>
           <div className={styles.mainWrapper}>
-            <BillInfoDynamics transactions={lastSixMonthTransactions}/>
+            <BillInfoDynamics transactions={lastSixMonthTransactions} resize={resize}/>
             <BillInfoHistory transactionsHistory={transactionsHistory} currentAccount={billData?.account ? billData?.account : ''}/>
           </div>
           <TransferForm allBillsNumbers={allBillsNumbers} currentAccount={billData?.account ? billData?.account : ''}/>

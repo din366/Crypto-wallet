@@ -18,3 +18,10 @@ $text-color: white;
   max-width: 15px;
   padding-left: 5px;
 }
+
+@media (max-width: 500px) {
+  .button {
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+}

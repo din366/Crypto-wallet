@@ -10,16 +10,16 @@ export const BillInfoMainData = ({billData, lastTransaction}) => {
     <div className={styles.billMainInfo}>
       <div className={styles.billInfoWrapper}>
         <div className={styles.billInfoBlock}>
-          <span>Номер счета: {billData && billData.account}</span>
+          <span className={styles.billInfoName}>Номер счета: </span><span className={styles.billInfoAccount}>{billData && billData.account}</span>
         </div>
         <div className={styles.billInfoBlock}>
-          <span>Дата открытия счета: {billData && convertData(billData.date)}</span>
+          <span className={styles.billInfoName}>Дата открытия счета: </span><span>{billData && convertData(billData.date)}</span>
         </div>
         <div className={styles.billInfoBlock}>
-          <span>Текущий баланс счета: {billData && billData.balance.toFixed(2)} RUB</span>
+          <span className={styles.billInfoName}>Текущий баланс счета: </span><span>{billData && billData.balance.toFixed(2)} RUB</span>
         </div>
         <div className={styles.billInfoBlock}>
-          <span>Последняя транзацкия: {lastTransaction ? convertData(lastTransaction.date) : 'no transactions yet'} </span>
+          <span className={styles.billInfoName}>Последняя транзацкия: </span><span>{lastTransaction ? convertData(lastTransaction.date) : 'no transactions yet'}</span>
         </div>
       </div>
     </div>

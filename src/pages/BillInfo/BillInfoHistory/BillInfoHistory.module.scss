@@ -3,7 +3,6 @@
 .historyBlock {
   .tableContainer::-webkit-scrollbar {
     width: 10px;
-
   }
 
   .tableContainer::-webkit-scrollbar-track {
@@ -75,5 +74,23 @@
 
   td:last-child {
     border-left: 1px solid $main-background-color;
+  }
+}
+
+@media (max-width: 600px) {
+  .historyBlock {
+    .tableContainer {
+      width: 92vw;
+      overflow-x: scroll;
+      table {
+        padding: 15px;
+
+        tr {
+          td {
+            padding: 5px 10px;
+          }
+        }
+      }
+    }
   }
 }

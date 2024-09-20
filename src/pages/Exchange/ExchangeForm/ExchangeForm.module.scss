@@ -1,20 +1,23 @@
 @import './../../../globalVars.module.scss';
 
-.formBlock{
+.formBlock {
   form {
 
   }
 
-  .inputsFlexWrapper{
+  .inputsFlexWrapper {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 
-    .inputWrapper{
-      width: 33%;
+    .inputWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 30%;
       position: relative;
 
-      .inputErrorBlock{
+      .inputErrorBlock {
         position: absolute;
         bottom: -20px;
         border-radius: 10px;
@@ -24,15 +27,9 @@
         padding: 6px;
         background-color: #fa4f4f;
         color: white;
+        z-index: 10;
 
       }
-    }
-
-    .inputWrapper{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      width: 30%;
 
       label {
         display: block;
@@ -50,7 +47,7 @@
     }
   }
 
-  .buttonWrapper{
+  .buttonWrapper {
     display: flex;
     justify-content: flex-end;
     position: relative;
@@ -66,5 +63,23 @@
       border-radius: 10px;
     }
   }
+}
 
+@media (max-width: 600px) {
+  .formBlock {
+    .inputsFlexWrapper {
+      flex-wrap: wrap;
+
+      .inputWrapper {
+        width: 100%;
+        margin-bottom: 10px;
+
+        .inputErrorBlock {
+          right: 20px;
+          left: auto;
+          bottom: -20%;
+        }
+      }
+    }
+  }
 }

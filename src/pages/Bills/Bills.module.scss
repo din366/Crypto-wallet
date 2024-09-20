@@ -23,6 +23,7 @@
 .billsHeaderWrapper{
   display: flex;
   justify-content: space-between;
+  align-items: end;
   margin-bottom: 20px;
 }
 
@@ -55,4 +56,75 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+
+@media (max-width: 1250px) {
+  .billsWrapper{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .billsWrapper{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .headTitle{
+    flex-wrap: wrap;
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .billsWrapper{
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .billsHeaderWrapper{
+    flex-wrap: wrap;
+  }
+
+  .billsTitle{
+    width: 100%;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .billsSortWrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .mainPage {
+    padding-top: 20px;
+  }
+
+  .headTitle{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 370px) {
+  .billsSortWrapper{
+    flex-wrap: wrap;
+
+    .billsSortTitle {
+      margin-bottom: 5px;
+    }
+
+    select {
+      width: 100%;
+    }
+  }
 }

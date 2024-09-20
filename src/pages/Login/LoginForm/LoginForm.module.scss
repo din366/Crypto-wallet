@@ -57,3 +57,25 @@
   margin: 0 0 20px 0;
 }
 
+@media (max-width: 700px) {
+  .formBlock{
+    padding: 30px 30px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .formTitle {
+    font-size: 22px;
+  }
+
+  .formBlock {
+    form {
+      width: 100%;
+    }
+
+    input {
+      padding: 10px;
+    }
+  }
+}

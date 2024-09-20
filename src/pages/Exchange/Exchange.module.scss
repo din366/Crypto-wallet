@@ -5,6 +5,11 @@
   color: white;
   padding-top: 70px;
   min-height: calc(100vh - 80px - 70px);
+
+  h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
 }
 
 .exchangeTitleWrapper {
@@ -44,5 +49,39 @@
     background-color: $main-blocks-color;
     padding: 30px;
     border-radius: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .exchangeFlexWrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .exchangeTitleWrapper {
+    margin-bottom: 30px;
+  }
+
+  .exchangeTitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .exchangePageWrapper {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .exchangePageWrapper {
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+  .exchangeCurrency {
+    padding: 20px;
   }
 }

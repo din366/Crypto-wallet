@@ -9,9 +9,11 @@ import {
 } from "../../../store/currencyExchange/currencyExchangeSlice.js";
 import {validate} from "./formikValidateExchange.js";
 import {useEffect} from "react";
+import {useResize} from "../../../features/useResize/useResize.js";
 
 const ExchangeForm = () => {
   const dispatch = useDispatch();
+  const resize = useResize();
 
   const userCurrencies = useSelector(availableCurrenciesOnlyName);
   const loading = useSelector(exchangeLoading);
@@ -83,7 +85,7 @@ const ExchangeForm = () => {
             type='submit'
             padding='10px 30px'
             fontSize={16}
-            width='30%'
+            width={resize < 600 ? '100%' : '30%'}
             disabled={loading}
           >Обменять</Button>
         </div>
