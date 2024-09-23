@@ -1,4 +1,4 @@
-export const groupedTransactionsByMonth = (transactions ,month) => {
+export const groupedTransactionsByMonth = (transactions, month) => {
   const currentDate = new Date();
   const sixMonthsAgo = new Date();
   sixMonthsAgo.setMonth(currentDate.getMonth() - month);
@@ -14,3 +14,4 @@ export const groupedTransactionsByMonth = (transactions ,month) => {
     return Date.parse(a.date) - Date.parse(b.date);
   });
 }
+

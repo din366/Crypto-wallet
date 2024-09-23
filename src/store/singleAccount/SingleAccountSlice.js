@@ -2,8 +2,6 @@ import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {getAccountIdData} from "../../globalVars.js";
 import {groupBillsByMonth} from "../../features/groupBillsByMonth/groupBillsByMonth.js";
-import {groupedTransactionsByMonth} from "../../features/groupedTransactionsByMonth/groupedTransactionsByMonth.js";
-
 
 const initialState = {
   loading: false,
@@ -74,8 +72,7 @@ export const getLastSixMonthTransactions = createSelector(
       return false;
     }
 
-    const transactions = groupedTransactionsByMonth(accountInfo.transactions,6);
-    return groupBillsByMonth(transactions);
+    return groupBillsByMonth(accountInfo.transactions, accountInfo.account, 6); // ? grouping by month with sum at the end of the month
   }
 );
 
