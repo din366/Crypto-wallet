@@ -1,4 +1,6 @@
-export const MAIN_URL = 'http://localhost:3000/';
+const isLocal = true;
+
+export const MAIN_URL = isLocal ? 'http://localhost:3000/' : 'https://crypto-wallet-api-one.vercel.app/';
 export const LOGIN_URL = MAIN_URL + 'login';
 export const ACCOUNT_CURRENCY_FOR_EXCHANGE = MAIN_URL + 'currencies';
 export const ACCOUNT_CURRENCY = MAIN_URL + 'accounts';

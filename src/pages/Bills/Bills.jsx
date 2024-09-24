@@ -36,7 +36,7 @@ const Bills = () => {
         {isLoading ? <div>Loading...</div> : (
           <>
             <div className={styles.headTitle}>
-              <h2>Здравствуйте, Александр!</h2>
+              <h2>Здравствуйте, Admin!</h2>
               <Button
                 padding='14px 40px'
                 disabled={!newAccountIsLoading}
