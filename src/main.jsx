@@ -1,5 +1,4 @@
 import App from './App.jsx';
-import './global.module.scss';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Bills from "./pages/Bills/Bills.jsx";
 import Exchange from "./pages/Exchange/Exchange.jsx";
